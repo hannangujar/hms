@@ -1,7 +1,14 @@
 <div class="container">
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-primary me-md-2" type="button">Member</button>
-        <button class="btn btn-danger" type="button">Sign Up</button>
+                            <% if Current.user %>             
+                                Welcome:<%= Current.user.first_name %> 
+                                <%= Current.user.last_name %>
+                                <%= link_to  "Change Password", edit_password_path %>
+                                <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-danger" %>
+                            <% else %>
+                                <%= link_to "Sign Up", signup_path, class: "btn btn-success" %>
+                                <%= link_to "Login", signin_path, class: "btn btn-primary me-md-2"%>
+                            <% end %>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
